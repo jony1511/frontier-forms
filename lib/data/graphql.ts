@@ -80,13 +80,10 @@ export function saveData (
       mutation: props.mutation,
       variables: values
     }).then(result => {
-      if (result.errors) {
-        // FIXME: find a way to handle GQL errors on mutation arguments
-        return {};
-      } else {
-        return undefined; // submit succeed
-      }
-    });
+      props.handleResult(result, values)
+    }).catch(errors=>{
+      props.handleErrors(errors)
+    })
   }
 }
 
