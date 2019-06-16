@@ -86,7 +86,7 @@ function saveData(props, values) {
 }
 exports.saveData = saveData;
 function getMutationNameFromDocumentNode(mutation) {
-    if (mutation.definitions.length > 1) {
+    if (mutation.definitions.length < 1) {
         console.warn('please provide 1 mutation document');
         return null;
     }

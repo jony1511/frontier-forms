@@ -180,7 +180,7 @@ export function saveData (
 //   }
 // }
 export function getMutationNameFromDocumentNode (mutation: DocumentNode): string | null {
-  if (mutation.definitions.length > 1) {
+  if (mutation.definitions.length < 1) {
     console.warn('please provide 1 mutation document');
     return null;
   } else {
