@@ -3,7 +3,7 @@ import { JSONSchema7TypeName } from 'json-schema';
 import { find } from 'lodash';
 import { ComponentType, ReactNode } from 'react';
 
-export type UIKITFieldProps = FieldState & { children?: ReactNode };
+export type UIKITFieldProps = FieldState<any> & { children?: ReactNode };
 export interface UIKitResolver {
   (path: string, type: JSONSchema7TypeName, required: boolean, children?: ReactNode): ComponentType<UIKITFieldProps>;
 }

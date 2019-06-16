@@ -10,6 +10,8 @@ export interface FrontierDataGraphQLProps {
   client?: ApolloClient<any>; // tslint:disable-line no-any
   schema?: JSONSchema7;
   save?: (values: object) => Promise<undefined | object>;
+  handleResult?: (result: object, values: object) => any;
+  handleErrors?: (errors: object) => any;
   formats?: { [k: string]: string };
 }
 
@@ -80,9 +82,15 @@ export function saveData (
       mutation: props.mutation,
       variables: values
     }).then(result => {
-      props.handleResult(result, values)
-    }).catch(errors=>{
-      props.handleErrors(errors)
+      if(props.handleResult){
+        props.handleResult(result, values)
+      }
+      return undefined
+    }).catch(errors => {
+      if(props.handleErrors){
+        props.handleErrors(errors)
+      }
+      return undefined
     })
   }
 }
